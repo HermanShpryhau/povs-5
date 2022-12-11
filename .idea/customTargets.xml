@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CLionExternalBuildManager">
+    <target id="a093ac95-9b9f-45a1-bab1-7dad21faa95f" name="Unnamed" defaultType="MAKE">
+      <configuration id="9b9af8e8-965d-446a-a1ee-3030d7ca792f" name="Unnamed" toolchainName="Default">
+        <build type="MAKE">
+          <make targetName="flash" />
+        </build>
+      </configuration>
+    </target>
+  </component>
+</project>
