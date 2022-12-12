@@ -293,7 +293,25 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
     for (uint8_t i = 0; i < BUF_SIZE; i++)
     {
-      TX_BUF[i] = RX_BUF[i] + shift;
+      if (RX_BUF[i] >= 'A' && RX_BUF[i] <= 'Z')
+      {
+        if (RX_BUF[i] + shift > 'Z')
+        {
+          TX_BUF[i] = RX_BUF[i] + shift - 26;
+        }
+        else if (RX_BUF[i] + shift < 'A')
+        {
+          TX_BUF[i] = RX_BUF[i] + shift + 26;
+        }
+        else
+        {
+          TX_BUF[i] = RX_BUF[i] + shift;
+        }
+      }
+      else
+      {
+        TX_BUF[i] = RX_BUF[i];
+      }
     }
   }
   HAL_UART_Transmit_DMA(&huart2, TX_BUF, sizeof(TX_BUF));
