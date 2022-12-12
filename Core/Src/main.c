@@ -96,7 +96,7 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-//  HAL_UART_Receive_DMA(&huart2, RX_BUF, sizeof(RX_BUF));
+  HAL_UART_Receive_DMA(&huart2, RX_BUF, sizeof(RX_BUF));
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,35 +106,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_UART_Receive(&huart2, RX_BUF, BUF_SIZE, 1000);
-    if (RX_BUF[0] == 0xFA)
-    {
-      encryptionMode = RX_BUF[1];
-      TX_BUF[0] = 0xFA;
-    }
-    else if (RX_BUF[0] == 0xFB)
-    {
-      key = RX_BUF[1];
-      TX_BUF[0] = 0xFA;
-    }
-    else
-    {
-      uint8_t shift = key;
-      if (!encryptionMode)
-      {
-        shift = -key;
-      }
-
-      for (uint8_t i = 0; i < BUF_SIZE; i++)
-      {
-        TX_BUF[i] = RX_BUF[i] + shift;
-      }
-    }
-    HAL_UART_Transmit(&huart2, TX_BUF, sizeof(TX_BUF), 1000);
-    for (int i = 0; i < BUF_SIZE; i++)
-    {
-      TX_BUF[i] = 0;
-    }
   }
   /* USER CODE END 3 */
 }
