@@ -256,7 +256,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   }
   else
   {
-    uint8_t shift = key;
+    int8_t shift = key;
     if (!encryptionMode)
     {
       shift = -key;
